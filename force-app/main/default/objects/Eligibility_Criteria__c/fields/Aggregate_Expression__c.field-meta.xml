@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Aggregate_Expression__c</fullName>
+    <description>This must be used if Field Name is set to AGGREGATE</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This must be used if Field Name is set to AGGREGATE</inlineHelpText>
+    <label>Aggregate Expression</label>
+    <length>32768</length>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

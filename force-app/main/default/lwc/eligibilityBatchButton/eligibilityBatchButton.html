@@ -1,0 +1,93 @@
+<template>
+    <!-- Card displaying on Eligibility Vaccine Group record page -->
+    <lightning-card  title="Eligibility Recalculation">
+        <!-- Description of process -->
+        <p class="slds-p-horizontal_small">Use this tool when a change has been made to the eligibility rules and a recalculation is required.</p>
+        <br/>
+
+        <!-- Batch size input -->
+        <lightning-input type="number" name="batchSizeInput" onchange={batchSizeChange} label="Batch size" value="2000" min=1 class="slds-p-horizontal_small"></lightning-input>
+
+        <br/>
+
+        <!-- Extra filter input -->
+        <lightning-input name="optionalFilterCondition" onchange={filterConditionChange} label="Optional filter condition" value="" min=1 class="slds-p-horizontal_small"></lightning-input>
+
+        <br/>
+
+        <!-- Button to open the modal -->
+        <lightning-button
+            variant="destructive" 
+            label={recalculateButtonLabel}
+            title="Run the Eligibility Recalculation batch process" 
+            onclick={openModal} 
+            class="slds-p-horizontal_small">
+        </lightning-button>        
+    </lightning-card>
+
+    <!-- Modal for confirmation of running batch process / track progress -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal header (title, close button) -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" >
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+
+                    <!-- Initial modal heading -->
+                    <template if:false={processRunning}>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirm Eligibility Recalculation</h2>
+                    </template>
+
+                    <!-- Modal heading while process is running -->
+                    <template if:true={processRunning}>
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Eligibility Recalculation Running...</h2>
+                    </template>
+                </header>
+
+                <!-- Modal body (explanation, error messages and progress bar) -->
+                <div class="slds-modal__content modalBody">
+                    <!-- Explanation of process -->
+                    <template if:false={errorState}>
+                        <div class="slds-p-around_small">
+                            <p>This process will recalculate the eligibility for all current Vaccination Applications.</p>
+                            <template if:false={processRunning}>
+                                <br/>
+                                <p><b>Are you sure you want to run this process?</b></p>
+                            </template>                            
+                        </div>
+                    </template>
+
+                    <!-- Display error message when in error state -->
+                    <template if:true={errorState}>
+                        <div class="slds-p-around_small">
+                            <p style="color:red;">{errorMessage}</p>
+                        </div>
+                    </template>   
+
+                    <!-- Show progress while process is running -->
+                    <template if:true={processRunning}>
+                        <div class="slds-p-around_small">
+                            <p>Status: {batchStatus}</p>
+                            <lightning-progress-bar value={batchProgress} size="large"></lightning-progress-bar>
+                        </div>  
+                    </template>                   
+                </div>
+
+                <!-- Modal footer (Cancel and OK Button) -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={cancelButtonClick} title="Cancel" disabled={processRunning}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={okButtonClick} title="OK" disabled={okButtonDisableStatus}>OK</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>  
+    </template>
+
+</template>

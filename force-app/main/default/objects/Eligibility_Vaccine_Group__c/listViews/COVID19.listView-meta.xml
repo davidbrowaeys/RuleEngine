@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COVID19</fullName>
+    <columns>Sequence__c</columns>
+    <columns>NAME</columns>
+    <columns>Active__c</columns>
+    <columns>Disease__c</columns>
+    <columns>Filter_Logic__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Disease__c</field>
+        <operation>equals</operation>
+        <value>COVID19</value>
+    </filters>
+    <label>COVID19</label>
+</ListView>

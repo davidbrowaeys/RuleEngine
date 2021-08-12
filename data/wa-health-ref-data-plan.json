@@ -1,0 +1,35 @@
+{
+    "pollingTimeout" : 120000,
+    "objects": [
+        {
+            "active" : true,
+            "objectName" : "Account", 
+            "filename" : "Account_Employers.csv",
+            "externalField" : "Unique_Id__c",
+            "fields": "Name,Unique_Id__c,vlocity_ins__Status__c,RecordType.DeveloperName",
+            "where" : "vlocity_ins__Status__c = 'Active' AND RecordType.DeveloperName = 'VAMS_Employer'"
+        },
+        {
+            "active" : true,
+            "objectName" : "Eligibility_Vaccine_Group__c", 
+            "filename" : "Eligibility_Vaccine_Group__c.csv",
+            "externalField" : "External_ID__c",
+            "fields": "Sequence__c,Active__c,Filter_Logic__c,Custom_Filter_Expression__c,Description__c,Disease__c,Site_Category__c,External_ID__c,Name",
+            "where" : null
+        },{
+            "active" : true,
+            "objectName" : "Eligibility_Criteria__c", 
+            "filename" : "Eligibility_Criteria__c.csv",
+            "externalField" : "External_ID__c",
+            "fields": "Eligibility_Vaccine_Group__r.External_ID__c,Aggregate_Expression__c,Criteria_Number__c,Field_Name__c, Operator__c,Criteria_Value__c,External_ID__c",
+            "where" : null
+        },{
+            "active" : true,
+            "objectName" : "Eligibility_Allocated_Vaccine__c", 
+            "filename" : "Eligibility_Allocated_Vaccine__c.csv",
+            "externalField" : "External_ID__c",
+            "fields": "Name,External_ID__c,Vaccine__r.Name,Eligibility_Vaccine_Group__r.External_ID__c",
+            "where" : null
+        }
+    ]
+}
