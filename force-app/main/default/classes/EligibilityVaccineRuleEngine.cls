@@ -5,6 +5,7 @@
 * @description Service class to handle eligibility vaccine calculation rule engine
 */
 public without sharing class EligibilityVaccineRuleEngine {
+    public static Boolean isLocked = false;
     public String diseaseKey;
     
     private String[] queryfields;

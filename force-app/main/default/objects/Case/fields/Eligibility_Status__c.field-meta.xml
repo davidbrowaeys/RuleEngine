@@ -14,7 +14,7 @@
             <sorted>false</sorted>
             <value>
                 <fullName>Not Eligible</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Not Eligible</label>
             </value>
             <value>
